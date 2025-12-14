@@ -5,8 +5,8 @@
 
 ## Tasks
 
-- [ ] 1. プロジェクトのセットアップと基盤構築
-- [ ] 1.1 (P) Vite + TypeScript + Tailwind CSSプロジェクトを初期化
+- [x] 1. プロジェクトのセットアップと基盤構築
+- [x] 1.1 (P) Vite + TypeScript + Tailwind CSSプロジェクトを初期化
   - `npm create vite@latest`でTypeScriptテンプレートを選択
   - Tailwind CSS 4.0をインストール(`npm install -D tailwindcss postcss autoprefixer`)
   - `vite.config.ts`に`@tailwindcss/vite`プラグインを追加
@@ -14,7 +14,7 @@
   - プロジェクト構造(src/, index.html)を確認
   - _Requirements: 4.1, 4.3, 4.4, 5.1_
 
-- [ ] 1.2 (P) 基本的なHTMLページ構造を作成
+- [x] 1.2 (P) 基本的なHTMLページ構造を作成
   - index.htmlにLuhnアルゴリズム解説用のセクションを配置
   - Tailwind CSSのユーティリティクラスで基本的なレイアウトを構築
   - 固定配置フォーム用のコンテナ要素をマークアップ(デスクトップ: 右上、モバイル: 下部)

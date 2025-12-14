@@ -1,0 +1,22 @@
+{
+  "name": "what-is-the-luhn-algorithm",
+  "version": "1.0.0",
+  "description": "Luhn Algorithm Learning and Validation SPA",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["luhn", "algorithm", "validation"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7"
+  }
+}
