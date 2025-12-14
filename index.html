@@ -40,12 +40,105 @@
       </p>
     </section>
 
+    <!-- 生成手順セクション -->
+    <section id="generation" class="mb-16">
+      <h2 class="text-2xl font-semibold mb-4">チェックディジットの生成手順</h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Luhnアルゴリズムを使って、有効な番号を生成する方法を学びましょう。例として、最初の10桁が<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">7992739871</code>のクレジットカード番号を完成させます。
+      </p>
+
+      <ol class="space-y-6 text-gray-700">
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-semibold mr-4">1</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">最後の桁を0と仮定して処理を開始</h4>
+              <p class="mb-2">チェックディジットを求めるため、最後の桁を一時的に0として計算します。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">仮の番号: <span class="font-bold">7 9 9 2 7 3 9 8 7 1 0</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-semibold mr-4">2</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">偶数桁の値を2倍にする</h4>
+              <p class="mb-2">右から数えて偶数番目の桁を2倍します。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">偶数桁の数値: <span class="text-purple-600">_ 9 _ 2 _ 3 _ 8 _ 1 _</span></div>
+                <div>2倍した結果: <span class="text-purple-600 font-bold">_ 18 _ 4 _ 6 _ 16 _ 2 _</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-semibold mr-4">3</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">2桁になった数値は各桁を合計</h4>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="space-y-1">
+                  <div>18 → 1 + 8 = <span class="font-bold text-green-600">9</span></div>
+                  <div>4 → そのまま <span class="font-bold text-green-600">4</span></div>
+                  <div>6 → そのまま <span class="font-bold text-green-600">6</span></div>
+                  <div>16 → 1 + 6 = <span class="font-bold text-green-600">7</span></div>
+                  <div>2 → そのまま <span class="font-bold text-green-600">2</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-semibold mr-4">4</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">すべての桁を合計する</h4>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">処理後の桁: <span class="font-bold">7 9 9 4 7 6 9 7 7 2 0</span></div>
+                <div class="mb-2">合計: 7 + 9 + 9 + 4 + 7 + 6 + 9 + 7 + 7 + 2 + 0</div>
+                <div>結果: <span class="font-bold text-purple-600">67</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-purple-100 text-purple-700 rounded-full font-semibold mr-4">5</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">チェックディジットを計算</h4>
+              <p class="mb-2">合計を10で割った余りを10から引くことで、チェックディジットを求めます。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">合計: <span class="font-bold">67</span></div>
+                <div class="mb-2">67 ÷ 10 = 6 余り <span class="font-bold text-orange-600">7</span></div>
+                <div class="mb-2">チェックディジット = 10 - 7 = <span class="font-bold text-green-600">3</span></div>
+                <div class="mt-3 pt-3 border-t border-gray-300">
+                  <div class="text-green-700 font-bold">完成した番号: <span class="text-xl">79927398713</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mt-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+        <h4 class="font-semibold text-blue-800 mb-2">💡 ポイント</h4>
+        <p class="text-gray-700 leading-relaxed">
+          この生成手順で作成した番号<code class="bg-white px-2 py-1 rounded text-sm font-mono">79927398713</code>は、次の検証手順で「有効」と判定されます。このように、Luhnアルゴリズムは番号の生成と検証の両方に使用できます。
+        </p>
+      </div>
+    </section>
+
     <!-- 検証手順セクション -->
-     <!-- TODO: 生成手順セクションを手前に置く。生成手順→検証手順とすることで、誤記や順序ミスを即座に検知できるluhnアルゴリズムの凄さが伝わる。 -->
-    <section id="steps" class="mb-16">
+    <section id="validation" class="mb-16">
       <h2 class="text-2xl font-semibold mb-4">検証手順</h2>
       <p class="text-gray-700 leading-relaxed mb-6">
-        Luhnアルゴリズムは、以下のステップで数値が有効かどうかを判定します。具体例として、クレジットカード番号<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">79927398714</code>を検証してみましょう。
+        次に、既存の番号が有効かどうかを検証する方法を見てみましょう。具体例として、クレジットカード番号<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">79927398714</code>(無効な例)を検証します。
       </p>
 
       <ol class="space-y-6 text-gray-700">
@@ -115,9 +208,9 @@
       </ol>
 
       <div class="mt-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-        <h4 class="font-semibold text-green-800 mb-2">有効な例を試してみよう</h4>
+        <h4 class="font-semibold text-green-800 mb-2">生成した番号を検証してみよう</h4>
         <p class="text-gray-700 leading-relaxed">
-          上の例では余りが1だったので無効でした。有効な数値の例として<code class="bg-white px-2 py-1 rounded text-sm font-mono">79927398713</code>を試してみてください。この番号は合計が70(10で割り切れる)になるため、<strong>有効な数値</strong>として判定されます
+          上の例では余りが1だったので無効でした。次に、前のセクションで生成した番号<code class="bg-white px-2 py-1 rounded text-sm font-mono">79927398713</code>を右側のフォームで入力してみてください。この番号は合計が70(10で割り切れる)になるため、<strong>有効な数値</strong>として判定されます。これにより、生成→検証というLuhnアルゴリズムの実用的な流れを体験できます!
         </p>
       </div>
     </section>
