@@ -6,9 +6,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
-  "keywords": ["luhn", "algorithm", "validation"],
+  "keywords": [
+    "luhn",
+    "algorithm",
+    "validation"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -17,6 +22,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "vite": "^7.2.7"
+    "vite": "^7.2.7",
+    "vitest": "^4.0.15"
   }
 }

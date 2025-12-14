@@ -22,14 +22,14 @@
   - main.tsをモジュールスクリプトとして読み込み
   - _Requirements: 1.4, 3.1, 5.1, 5.2_
 
-- [ ] 2. Luhnアルゴリズムの実装
-- [ ] 2.1 (P) Luhnアルゴリズムの型定義を作成
+- [x] 2. Luhnアルゴリズムの実装
+- [x] 2.1 (P) Luhnアルゴリズムの型定義を作成
   - ValidationResult型を定義(isValid: boolean, message: string)
   - LuhnService型を定義(validateLuhn, calculateChecksum)
   - 型をエクスポートして他モジュールから利用可能にする
   - _Requirements: 4.2_
 
-- [ ] 2.2 Luhnアルゴリズムの検証ロジックを実装
+- [x] 2.2 Luhnアルゴリズムの検証ロジックを実装
   - 文字列を数値配列に変換する関数を実装
   - Luhnチェックサムを計算する関数(calculateChecksum)を実装
   - 右から左に桁を処理し、2倍にする桁を決定
@@ -38,7 +38,7 @@
   - validateLuhn関数でValidationResultを返す
   - _Requirements: 2.1, 2.2, 4.1_
 
-- [ ]* 2.3 Luhnアルゴリズムのユニットテストを作成
+- [x]* 2.3 Luhnアルゴリズムのユニットテストを作成
   - 有効な数値(例: クレジットカード番号)のテストケース
   - 無効な数値のテストケース
   - エッジケース(1桁、空文字列)のテストケース
