@@ -15,20 +15,111 @@
       <p class="text-center text-gray-600">学習と検証のための教育的Webアプリケーション</p>
     </header>
 
-    <!-- 解説セクション用プレースホルダー -->
+    <!-- 解説セクション -->
     <section id="explanation" class="mb-16">
-      <h2 class="text-2xl font-semibold mb-4">Luhnアルゴリズムとは？</h2>
+      <h2 class="text-2xl font-semibold mb-4">Luhnアルゴリズムとは?</h2>
       <p class="text-gray-700 leading-relaxed mb-4">
-        解説コンテンツはタスク4で実装します。
+        Luhnアルゴリズム(Luhn formula)は、1954年にIBMの科学者Hans Peter Luhnによって考案されたチェックサムアルゴリズムです。入力ミスや単純なエラーを検出することを目的とした検証方式で、現在も広く利用されています。
+      </p>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        このアルゴリズムは、数値列の最後の桁(チェックディジット)を使って、全体の数値が正しいかどうかを判定します。複雑な暗号技術ではなく、あくまで「タイプミス」などの単純な誤りを検出するための仕組みです。
+      </p>
+
+      <h3 class="text-xl font-semibold mb-3 mt-8">実用例</h3>
+      <p class="text-gray-700 leading-relaxed mb-4">
+        Luhnアルゴリズムは、以下のような場面で実際に使用されています:
+      </p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2 mb-4 ml-4">
+        <li><strong>クレジットカード番号</strong> — Visa、MasterCard、American Expressなど主要なカード番号の検証</li>
+        <li><strong>IMEI番号</strong> — 携帯電話やスマートフォンを識別する国際移動体装置識別番号</li>
+        <li><strong>カナダの社会保険番号</strong> — 国民識別番号の検証</li>
+        <li><strong>その他の識別番号</strong> — 多くの企業や組織で独自の識別番号検証に採用</li>
+      </ul>
+      <p class="text-gray-700 leading-relaxed">
+        これらのシステムでは、ユーザーが番号を入力した際に、Luhnアルゴリズムで即座に検証することで、明らかな入力ミスを早期に発見できます。
       </p>
     </section>
 
-    <!-- 計算手順セクション用プレースホルダー -->
+    <!-- 検証手順セクション -->
+     <!-- TODO: 生成手順セクションを手前に置く。生成手順→検証手順とすることで、誤記や順序ミスを即座に検知できるluhnアルゴリズムの凄さが伝わる。 -->
     <section id="steps" class="mb-16">
-      <h2 class="text-2xl font-semibold mb-4">計算手順</h2>
-      <p class="text-gray-700">
-        計算手順の詳細はタスク4で実装します。
+      <h2 class="text-2xl font-semibold mb-4">検証手順</h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Luhnアルゴリズムは、以下のステップで数値が有効かどうかを判定します。具体例として、クレジットカード番号<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">79927398714</code>を検証してみましょう。
       </p>
+
+      <ol class="space-y-6 text-gray-700">
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full font-semibold mr-4">1</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">偶数桁の値を2倍にする</h4>
+              <p class="mb-2">最も右の桁(チェックディジット)から始めて、1つおきの偶数桁の値を2倍します。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">元の数値: <span class="font-bold">7 9 9 2 7 3 9 8 7 1 4</span></div>
+                <div class="mb-2">偶数桁の数値: <span class="text-blue-600">_ 9 _ 2 _ 3 _ 8 _ 1 _</span></div>
+                <div>2倍した結果: <span class="text-blue-600 font-bold">_ 18 _ 4 _ 6 _ 16 _ 2 _</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full font-semibold mr-4">2</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">2倍した結果が10以上の場合、各桁を合計する</h4>
+              <p class="mb-2">2倍して2桁になった数値は、各桁を足し合わせて1桁にします。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="space-y-1">
+                  <div>18 → 1 + 8 = <span class="font-bold text-green-600">9</span></div>
+                  <div>4 → そのまま <span class="font-bold text-green-600">4</span></div>
+                  <div>6 → そのまま <span class="font-bold text-green-600">6</span></div>
+                  <div>16 → 1 + 6 = <span class="font-bold text-green-600">7</span></div>
+                  <div>2 → そのまま <span class="font-bold text-green-600">2</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full font-semibold mr-4">3</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">すべての桁を合計する</h4>
+              <p class="mb-2">2倍した桁(処理後)と、2倍していない桁をすべて合計します。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">処理後の桁: <span class="font-bold">7 9 9 4 7 6 9 7 7 2 4</span></div>
+                <div class="mb-2">合計: 7 + 9 + 9 + 4 + 7 + 6 + 9 + 7 + 7 + 2 + 4</div>
+                <div>結果: <span class="font-bold text-purple-600">71</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full font-semibold mr-4">4</span>
+            <div class="flex-1">
+              <h4 class="font-semibold mb-2">合計が10で割り切れるかチェック</h4>
+              <p class="mb-2">最終的な合計が10で割り切れれば、その数値は<strong>有効</strong>です。</p>
+              <div class="bg-gray-50 p-4 rounded-md font-mono text-sm">
+                <div class="mb-2">合計: <span class="font-bold">71</span></div>
+                <div class="mb-2">71 ÷ 10 = 7 余り <span class="font-bold text-red-600">1</span></div>
+                <div class="text-red-600 font-bold">→ 割り切れないため、<span class="underline">無効</span>な数値</div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mt-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
+        <h4 class="font-semibold text-green-800 mb-2">有効な例を試してみよう</h4>
+        <p class="text-gray-700 leading-relaxed">
+          上の例では余りが1だったので無効でした。有効な数値の例として<code class="bg-white px-2 py-1 rounded text-sm font-mono">79927398713</code>を試してみてください。この番号は合計が70(10で割り切れる)になるため、<strong>有効な数値</strong>として判定されます
+        </p>
+      </div>
     </section>
 
     <!-- スペーサー (固定フォームが解説を隠さないための余白) -->
