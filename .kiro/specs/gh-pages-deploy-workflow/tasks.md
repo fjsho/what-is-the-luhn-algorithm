@@ -5,86 +5,86 @@
 
 ## Tasks
 
-- [ ] 1. ワークフロー設定ファイルの作成と基本構造の定義
-- [ ] 1.1 (P) .github/workflows/ディレクトリを作成し、deploy.ymlファイルを配置
+- [x] 1. ワークフロー設定ファイルの作成と基本構造の定義
+- [x] 1.1 (P) .github/workflows/ディレクトリを作成し、deploy.ymlファイルを配置
   - リポジトリのルートに`.github/workflows/`ディレクトリを作成
   - `deploy.yml`という明確な名前でワークフロー設定ファイルを作成
   - YAML形式の基本構造(name, on, permissions, concurrency)を記述
   - _Requirements: 5_
 
-- [ ] 1.2 (P) ワークフローのトリガー条件を設定
+- [x] 1.2 (P) ワークフローのトリガー条件を設定
   - `on.push.branches: ["main"]`でmainブランチへのpushをトリガー条件に設定
   - `on.workflow_dispatch`で手動トリガーを有効化
   - トリガー条件が正しく記述されていることをYAML構文で確認
   - _Requirements: 1_
 
-- [ ] 1.3 (P) パーミッション設定を定義
+- [x] 1.3 (P) パーミッション設定を定義
   - `permissions.contents: read`でリポジトリコンテンツの読み取り権限を付与
   - `permissions.pages: write`でGitHub Pagesへの書き込み権限を付与
   - `permissions.id-token: write`でGitHub Pages Artifact方式に必要なトークン権限を付与
   - concurrency設定で`group: "pages"`、`cancel-in-progress: false`を設定し、同時デプロイを防止
   - _Requirements: 6_
 
-- [ ] 2. Build Jobの実装
-- [ ] 2.1 Build Job定義とコードチェックアウト
+- [x] 2. Build Jobの実装
+- [x] 2.1 Build Job定義とコードチェックアウト
   - `build`ジョブを定義し、`runs-on: ubuntu-latest`で実行環境を指定
   - `actions/checkout@v4`でリポジトリコードをチェックアウト
   - チェックアウトステップが正常に動作することを確認
   - _Requirements: 2_
 
-- [ ] 2.2 Node.js環境のセットアップ
+- [x] 2.2 Node.js環境のセットアップ
   - `actions/setup-node@v4`でNode.js 20環境をセットアップ
   - `node-version: '20'`を指定
   - `cache: 'npm'`でnpmキャッシュを有効化(actions/setup-node組み込み機能)
   - Node.js環境が正しくセットアップされることを確認
   - _Requirements: 2, 7_
 
-- [ ] 2.3 依存関係のインストール
+- [x] 2.3 依存関係のインストール
   - `npm ci`で決定的な依存関係インストールを実行
   - package-lock.jsonを使用して再現性のあるビルド環境を構築
   - インストール失敗時はワークフローが停止することを確認
   - _Requirements: 2, 7_
 
-- [ ] 2.4 テストの実行
+- [x] 2.4 テストの実行
   - `npm test`でVitestテストスイートを実行
   - テスト結果がワークフローログに出力されることを確認
   - テスト失敗時はワークフロー全体が停止し、後続ステップがスキップされることを確認
   - _Requirements: 3_
 
-- [ ] 2.5 Viteビルドの実行
+- [x] 2.5 Viteビルドの実行
   - `npm run build`でViteビルドを実行
   - dist/ディレクトリにビルド成果物(index.html、assets/)が生成されることを確認
   - ビルド失敗時はワークフローが停止しエラーメッセージが出力されることを確認
   - _Requirements: 2_
 
-- [ ] 2.6 GitHub Pages Artifactのアップロード
+- [x] 2.6 GitHub Pages Artifactのアップロード
   - `actions/upload-pages-artifact@v3`でdist/ディレクトリをArtifactとしてアップロード
   - `path: ./dist`でアップロード対象を指定
   - Artifactが正常にアップロードされ、deploy jobで利用可能になることを確認
   - _Requirements: 4_
 
-- [ ] 3. Deploy Jobの実装
-- [ ] 3.1 Deploy Job定義とBuild Job依存関係の設定
+- [x] 3. Deploy Jobの実装
+- [x] 3.1 Deploy Job定義とBuild Job依存関係の設定
   - `deploy`ジョブを定義し、`runs-on: ubuntu-latest`で実行環境を指定
   - `needs: build`でbuild jobの成功を前提条件に設定
   - build job失敗時はdeploy jobがスキップされることを確認
   - _Requirements: 4_
 
-- [ ] 3.2 GitHub Pages環境の設定
+- [x] 3.2 GitHub Pages環境の設定
   - `environment.name: github-pages`でデプロイ先環境を指定
   - `environment.url: ${{ steps.deployment.outputs.page_url }}`でデプロイURLを環境URLとして設定
   - 環境設定が正しく記述されていることを確認
   - _Requirements: 4_
 
-- [ ] 3.3 GitHub Pagesへのデプロイ実行
+- [x] 3.3 GitHub Pagesへのデプロイ実行
   - `actions/deploy-pages@v4`でGitHub Pages Artifactをデプロイ
   - ステップIDを`deployment`として設定し、デプロイURL出力を参照可能にする
   - デプロイ完了後に`${{ steps.deployment.outputs.page_url }}`がワークフローログに出力されることを確認
   - GitHub Pages設定でSourceが"GitHub Actions"に設定されていることを確認
   - _Requirements: 4_
 
-- [ ] 4. ワークフロー全体の統合と動作検証
-- [ ] 4.1 ワークフロー設定ファイルをGitリポジトリにコミット
+- [x] 4. ワークフロー全体の統合と動作検証
+- [x] 4.1 ワークフロー設定ファイルをGitリポジトリにコミット
   - `.github/workflows/deploy.yml`をGitでバージョン管理に追加
   - コミットメッセージで変更内容を明確に記述
   - リモートリポジトリにpushしてワークフローを有効化
