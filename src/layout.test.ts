@@ -4,24 +4,25 @@ describe('Layout and Styling (Task 5.2)', () => {
   let container: HTMLElement;
 
   beforeEach(() => {
-    // HTMLを読み込んでDOMを構築
+    // HTMLを読み込んでDOMを構築 (index.htmlの固定フォームと同じ構造)
     container = document.createElement('div');
     container.innerHTML = `
-      <aside id="validator-form" class="fixed bottom-0 left-0 right-0 md:bottom-auto md:top-4 md:right-4 md:left-auto md:w-96 bg-white shadow-lg p-6 rounded-t-lg md:rounded-lg border-t md:border z-50">
-        <h3 class="text-lg font-semibold mb-4">数値を検証</h3>
+      <aside id="validator-form" class="ads-card fixed bottom-0 left-0 right-0 md:bottom-auto md:top-16 md:right-4 md:left-auto md:w-96 p-6 rounded-t-lg md:rounded-lg z-50">
+        <h3 class="ads-heading-small mb-4">数値を検証</h3>
         <div class="mb-4">
-          <label for="number-input" class="block text-sm font-medium text-gray-700 mb-2">
+          <label for="number-input" class="ads-label">
             検証対象の数値を入力
           </label>
           <input
             type="text"
             id="number-input"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            class="ads-textfield"
+            inputmode="numeric"
             placeholder="例: 4532015112830366"
             aria-label="検証対象の数値"
           >
         </div>
-        <div id="result" class="p-3 rounded-md bg-gray-100 text-gray-600 text-sm" role="status" aria-live="polite">
+        <div id="result" class="ads-result ads-result--neutral" role="status" aria-live="polite">
           数値を入力してください
         </div>
       </aside>
@@ -40,7 +41,7 @@ describe('Layout and Styling (Task 5.2)', () => {
       const form = container.querySelector('#validator-form');
       const classList = Array.from(form?.classList || []);
 
-      // デスクトップ用: md:top-4 md:right-4
+      // デスクトップ用: md:top-16 md:right-4
       expect(classList.some(c => c.includes('md:top'))).toBe(true);
       expect(classList.some(c => c.includes('md:right'))).toBe(true);
     });
@@ -62,10 +63,10 @@ describe('Layout and Styling (Task 5.2)', () => {
   });
 
   describe('浮遊感を演出するスタイル', () => {
-    it('シャドウが適用されている', () => {
+    it('カードスタイル (ADSシャドウ・背景) が適用されている', () => {
+      // ads-card が --ds-shadow-overlay と --ds-surface-overlay を適用する
       const form = container.querySelector('#validator-form');
-      const classList = Array.from(form?.classList || []);
-      expect(classList.some(c => c.includes('shadow'))).toBe(true);
+      expect(form?.classList.contains('ads-card')).toBe(true);
     });
 
     it('パディングが適用されている', () => {
@@ -78,11 +79,6 @@ describe('Layout and Styling (Task 5.2)', () => {
       const form = container.querySelector('#validator-form');
       const classList = Array.from(form?.classList || []);
       expect(classList.some(c => c.includes('rounded'))).toBe(true);
-    });
-
-    it('背景色が設定されている', () => {
-      const form = container.querySelector('#validator-form');
-      expect(form?.classList.contains('bg-white')).toBe(true);
     });
   });
 
@@ -102,13 +98,10 @@ describe('Layout and Styling (Task 5.2)', () => {
       expect(result?.getAttribute('aria-live')).toBe('polite');
     });
 
-    it('入力フォームにフォーカススタイルが適用されている', () => {
+    it('入力フォームにフォーカススタイル付きのテキストフィールドクラスが適用されている', () => {
+      // ads-textfield が :focus 時に --ds-border-focused のボーダーを適用する
       const input = container.querySelector('#number-input');
-      const classList = Array.from(input?.classList || []);
-
-      // フォーカス時のリングとボーダー
-      expect(classList.some(c => c.includes('focus:ring'))).toBe(true);
-      expect(classList.some(c => c.includes('focus:border'))).toBe(true);
+      expect(input?.classList.contains('ads-textfield')).toBe(true);
     });
 
     it('labelがinputと正しく関連付けられている', () => {
@@ -157,33 +150,19 @@ describe('Layout and Styling (Task 5.2)', () => {
   });
 
   describe('視覚的な改善', () => {
-    it('入力フォームに適切なパディングが設定されている', () => {
+    it('入力フォームにADSテキストフィールドスタイルが設定されている', () => {
+      // ads-textfield がパディング・ボーダー (--ds-border-input) を適用する
       const input = container.querySelector('#number-input');
-      const classList = Array.from(input?.classList || []);
-
-      expect(classList.includes('px-3')).toBe(true);
-      expect(classList.includes('py-2')).toBe(true);
+      expect(input?.classList.contains('ads-textfield')).toBe(true);
     });
 
-    it('入力フォームにボーダーが設定されている', () => {
-      const input = container.querySelector('#number-input');
-      const classList = Array.from(input?.classList || []);
-
-      expect(classList.some(c => c.includes('border'))).toBe(true);
-    });
-
-    it('結果表示に適切なパディングが設定されている', () => {
+    it('結果表示にADS結果メッセージスタイルが設定されている', () => {
+      // ads-result がパディングを、ads-result--* が背景色トークンを適用する
       const result = container.querySelector('#result');
       const classList = Array.from(result?.classList || []);
 
-      expect(classList.includes('p-3')).toBe(true);
-    });
-
-    it('結果表示に背景色が設定されている', () => {
-      const result = container.querySelector('#result');
-      const classList = Array.from(result?.classList || []);
-
-      expect(classList.some(c => c.includes('bg-'))).toBe(true);
+      expect(classList.includes('ads-result')).toBe(true);
+      expect(classList.some(c => c.startsWith('ads-result--'))).toBe(true);
     });
   });
 });

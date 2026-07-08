@@ -37,8 +37,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toContain('数値を入力してください');
-      expect(resultElement.className).toContain('bg-gray-100');
-      expect(resultElement.className).toContain('text-gray-600');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--neutral');
     });
 
     it('数値のみの入力を受け入れる', () => {
@@ -58,8 +58,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toBe('数値のみを入力してください');
-      expect(resultElement.className).toContain('bg-red-100');
-      expect(resultElement.className).toContain('text-red-700');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--error');
     });
 
     it('スペースを含む入力はエラーとする', () => {
@@ -69,7 +69,7 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toBe('数値のみを入力してください');
-      expect(resultElement.className).toContain('bg-red-100');
+      expect(resultElement.className).toContain('ads-result--error');
     });
 
     it('記号を含む入力はエラーとする', () => {
@@ -136,8 +136,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toBe('有効な数値です');
-      expect(resultElement.className).toContain('bg-green-100');
-      expect(resultElement.className).toContain('text-green-700');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--success');
     });
 
     it('無効な数値の場合はエラースタイルを適用する', () => {
@@ -147,8 +147,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toBe('無効な数値です');
-      expect(resultElement.className).toContain('bg-red-100');
-      expect(resultElement.className).toContain('text-red-700');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--error');
     });
 
     it('空文字の場合はニュートラルなスタイルを適用する', () => {
@@ -158,8 +158,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toContain('数値を入力してください');
-      expect(resultElement.className).toContain('bg-gray-100');
-      expect(resultElement.className).toContain('text-gray-600');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--neutral');
     });
 
     it('非数値入力の場合はエラースタイルを適用する', () => {
@@ -169,8 +169,8 @@ describe('Validator UI Logic', () => {
       inputElement.dispatchEvent(new Event('input'));
 
       expect(resultElement.textContent).toBe('数値のみを入力してください');
-      expect(resultElement.className).toContain('bg-red-100');
-      expect(resultElement.className).toContain('text-red-700');
+      expect(resultElement.className).toContain('ads-result');
+      expect(resultElement.className).toContain('ads-result--error');
     });
 
     it('XSS対策としてtextContentを使用する', () => {

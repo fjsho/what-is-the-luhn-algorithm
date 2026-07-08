@@ -13,7 +13,7 @@ describe('Layout Adjustment (Task 5.3)', () => {
         <section id="validation">Content</section>
         <div class="h-56 md:h-0"></div>
       </main>
-      <aside id="validator-form" class="fixed bottom-0 left-0 right-0 md:bottom-auto md:top-4 md:right-4 md:left-auto md:w-96 bg-white shadow-lg p-6 rounded-t-lg md:rounded-lg border-t md:border z-50">
+      <aside id="validator-form" class="ads-card fixed bottom-0 left-0 right-0 md:bottom-auto md:top-16 md:right-4 md:left-auto md:w-96 p-6 rounded-t-lg md:rounded-lg z-50">
         <h3>数値を検証</h3>
         <input type="text" id="number-input">
         <div id="result"></div>
@@ -45,7 +45,7 @@ describe('Layout Adjustment (Task 5.3)', () => {
 
       // デスクトップ用の設定を確認
       expect(classList.includes('md:w-96')).toBe(true); // 384px幅
-      expect(classList.includes('md:top-4')).toBe(true); // 上から16px
+      expect(classList.includes('md:top-16')).toBe(true); // 上から64px (トップナビゲーションの下)
       expect(classList.includes('md:right-4')).toBe(true); // 右から16px
     });
   });
@@ -130,9 +130,9 @@ describe('Layout Adjustment (Task 5.3)', () => {
       // モバイル: bottom-0
       expect(classList.includes('bottom-0')).toBe(true);
 
-      // デスクトップ: md:bottom-auto (bottomを無効化), md:top-4
+      // デスクトップ: md:bottom-auto (bottomを無効化), md:top-16
       expect(classList.includes('md:bottom-auto')).toBe(true);
-      expect(classList.includes('md:top-4')).toBe(true);
+      expect(classList.includes('md:top-16')).toBe(true);
     });
 
     it('デスクトップとモバイルでフォームの幅が切り替わる', () => {

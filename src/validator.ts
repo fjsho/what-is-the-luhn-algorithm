@@ -74,19 +74,19 @@ function updateUI(
   // XSS対策: textContentを使用してHTMLタグをエスケープ
   element.textContent = message;
 
-  // 既存のスタイルクラスをクリア
-  element.className = 'p-3 rounded-md text-sm';
+  // 既存のスタイルクラスをクリア (Atlassian Design System トークンベースのスタイル)
+  element.className = 'ads-result';
 
   // メッセージタイプに応じたスタイルを適用
   switch (type) {
     case 'success':
-      element.className += ' bg-green-100 text-green-700';
+      element.className += ' ads-result--success';
       break;
     case 'error':
-      element.className += ' bg-red-100 text-red-700';
+      element.className += ' ads-result--error';
       break;
     case 'neutral':
-      element.className += ' bg-gray-100 text-gray-600';
+      element.className += ' ads-result--neutral';
       break;
   }
 }

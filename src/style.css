@@ -1,1 +1,146 @@
 @import "tailwindcss";
+@import "./ads-tokens.css";
+
+/*
+ * Atlassian Design System (https://atlassian.design/components) の
+ * コンポーネント仕様を @atlaskit/tokens のデザイントークンで再現したスタイル。
+ * トークンは src/ads-tokens.css (生成物) で定義される。
+ */
+
+body {
+  font: var(--ds-font-body-large);
+  color: var(--ds-text);
+  background: var(--ds-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Heading (https://atlassian.design/components/heading) ---- */
+.ads-heading-xxlarge { font: var(--ds-font-heading-xxlarge); color: var(--ds-text); }
+.ads-heading-large   { font: var(--ds-font-heading-large);   color: var(--ds-text); }
+.ads-heading-medium  { font: var(--ds-font-heading-medium);  color: var(--ds-text); }
+.ads-heading-small   { font: var(--ds-font-heading-small);   color: var(--ds-text); }
+.ads-heading-xsmall  { font: var(--ds-font-heading-xsmall);  color: var(--ds-text); }
+
+/* ---- Top navigation (https://atlassian.design/components/atlassian-navigation) ---- */
+.ads-topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-100);
+  padding: var(--ds-space-150) var(--ds-space-300);
+  background: var(--ds-surface);
+  border-bottom: 1px solid var(--ds-border);
+}
+.ads-topbar__title {
+  font: var(--ds-font-heading-xsmall);
+  color: var(--ds-text);
+}
+
+/* ---- Code (https://atlassian.design/components/code) ---- */
+.ads-code {
+  font: var(--ds-font-code);
+  background: var(--ds-background-neutral);
+  border-radius: var(--ds-radius-xsmall);
+  padding: var(--ds-space-025) var(--ds-space-050);
+}
+.ads-code-block {
+  font: var(--ds-font-code);
+  background: var(--ds-background-neutral);
+  border-radius: var(--ds-radius-small);
+  padding: var(--ds-space-200);
+  overflow-x: auto;
+}
+
+/* ---- Section message (https://atlassian.design/components/section-message) ---- */
+.ads-section-message {
+  display: flex;
+  gap: var(--ds-space-200);
+  padding: var(--ds-space-200);
+  border-radius: var(--ds-radius-small);
+}
+.ads-section-message__icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.ads-section-message__title {
+  font: var(--ds-font-heading-xsmall);
+  color: var(--ds-text);
+  margin-bottom: var(--ds-space-100);
+}
+.ads-section-message--information { background: var(--ds-background-information); }
+.ads-section-message--information .ads-section-message__icon { color: var(--ds-icon-information); }
+.ads-section-message--success { background: var(--ds-background-success); }
+.ads-section-message--success .ads-section-message__icon { color: var(--ds-icon-success); }
+.ads-section-message--discovery { background: var(--ds-background-discovery); }
+.ads-section-message--discovery .ads-section-message__icon { color: var(--ds-icon-discovery); }
+
+/* ---- Lozenge (https://atlassian.design/components/lozenge) ---- */
+.ads-lozenge {
+  display: inline-block;
+  font: var(--ds-font-body-small);
+  font-weight: var(--ds-font-weight-bold);
+  border-radius: var(--ds-radius-xsmall);
+  padding: 0 var(--ds-space-050);
+  vertical-align: middle;
+}
+.ads-lozenge--success { background: var(--ds-background-success); color: var(--ds-text-success); }
+.ads-lozenge--removed { background: var(--ds-background-danger);  color: var(--ds-text-danger); }
+
+/* ---- Badge 風のステップ番号 (https://atlassian.design/components/badge) ---- */
+.ads-step-badge {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ds-radius-full);
+  font: var(--ds-font-heading-xsmall);
+}
+.ads-step-badge--discovery { background: var(--ds-background-discovery-bold); color: var(--ds-text-inverse); }
+.ads-step-badge--information { background: var(--ds-background-information-bold); color: var(--ds-text-inverse); }
+
+/* ---- カード (固定フォーム) ---- */
+.ads-card {
+  background: var(--ds-surface-overlay);
+  box-shadow: var(--ds-shadow-overlay);
+  border: 1px solid var(--ds-border);
+}
+
+/* ---- Form label (https://atlassian.design/components/form) ---- */
+.ads-label {
+  display: block;
+  font: var(--ds-font-body-small);
+  font-weight: var(--ds-font-weight-bold);
+  color: var(--ds-text-subtle);
+  margin-bottom: var(--ds-space-050);
+}
+
+/* ---- Text field (https://atlassian.design/components/textfield) ---- */
+.ads-textfield {
+  width: 100%;
+  font: var(--ds-font-body);
+  color: var(--ds-text);
+  background: var(--ds-background-input);
+  border: 2px solid var(--ds-border-input);
+  border-radius: var(--ds-radius-small);
+  padding: var(--ds-space-100) var(--ds-space-075);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.ads-textfield:hover { background: var(--ds-background-input-hovered); }
+.ads-textfield:focus {
+  outline: none;
+  background: var(--ds-background-input-pressed);
+  border-color: var(--ds-border-focused);
+}
+.ads-textfield::placeholder { color: var(--ds-text-subtlest); }
+
+/* ---- 検証結果メッセージ ---- */
+.ads-result {
+  font: var(--ds-font-body);
+  padding: var(--ds-space-150);
+  border-radius: var(--ds-radius-small);
+}
+.ads-result--neutral { background: var(--ds-background-neutral); color: var(--ds-text-subtle); }
+.ads-result--success { background: var(--ds-background-success); color: var(--ds-text-success); }
+.ads-result--error   { background: var(--ds-background-danger);  color: var(--ds-text-danger); }
