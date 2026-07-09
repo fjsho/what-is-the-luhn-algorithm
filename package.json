@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@atlaskit/tokens": "^15.4.0",
     "@tailwindcss/vite": "^4.1.18",
     "autoprefixer": "^10.4.22",
     "happy-dom": "^20.0.11",
